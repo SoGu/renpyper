@@ -1,0 +1,10 @@
+<renpyper>
+	<personality_model>
+		<traits>personality_traits.xml</traits>
+		<traits>story_traits.xml</traits>
+	</personality_model>
+	
+	<characters>
+		<character>max.xml</character>
+	</characters>
+</renpyper>
