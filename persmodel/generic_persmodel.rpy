@@ -13,4 +13,7 @@ label renpyper_genericPersmod:
             def setValue(self):
                 pass
                 
+                
+        #define the modes for numeric variables
+        LINEAR = 1
     return
