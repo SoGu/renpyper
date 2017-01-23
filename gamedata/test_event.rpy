@@ -16,7 +16,7 @@ label renpyper_testEvent(char1=None, char2=None):
     
     c1 "My current [topName] is [currentTrust]."
     
-    $ char1.traits_['trust'].inc(10)
+    $ char1.traits_['trust'].inc(1111)
     $ currentTrust = char1.traits_['trust'].getValue()
     
     c1 "My current [topName] is [currentTrust]."
