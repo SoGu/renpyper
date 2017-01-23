@@ -9,6 +9,6 @@ label start:
     scene bg room
     show eileen happy
         
-    call renpyper_testEvent(Player, MaxMustermann)
+    call renpyper_testEvent(MaxMustermann, Player)
 
     return

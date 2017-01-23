@@ -7,6 +7,6 @@ label renpyper_gameCharacters:
         
         # define playerCharacter
         Player = RenpyperCharacter('Me', "#d1d1d1", True)
-        Player.traits_['trust'] = Trait(0)
+        Player.traits_['trust'] = Trait(55)
         
     return

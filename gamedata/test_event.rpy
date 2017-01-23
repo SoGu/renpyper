@@ -11,4 +11,13 @@ label renpyper_testEvent(char1=None, char2=None):
     
     c2 "And now character two is saying something else."
     
+    $ currentTrust = char1.traits_['trust'].get()
+    
+    c1 "My current trust is [currentTrust]."
+    
+    $ char1.traits_['trust'].inc(10)
+    $ currentTrust = char1.traits_['trust'].getValue()
+    
+    c1 "My current trust is [currentTrust]."
+    
     return
