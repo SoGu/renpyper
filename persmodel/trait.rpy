@@ -25,9 +25,12 @@ label renpyper_traits:
                 self.top_ = top
                 self.bottom_ = bottom
                 self.mode_ = mode
-                self.incdec_ = incdec
                 self.nameTop_ = topName
                 self.nameBottom_ = bottomName
+                if (self.mode_ == MANUAL):
+                    self.incdec_ = incdec
+                elif (self.mode_ == LINEAR):
+                    self.incdec_ = incdecLinear
             
             def getValue(self):
                 """ The basic getter method. Use only this method to receive the trait value. """

@@ -17,5 +17,7 @@ label renpyper_genericPersmod:
         #define the modes for numeric variables
         LINEAR = 1
         
+        MANUAL = 99
+        
     return
     
