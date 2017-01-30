@@ -22,18 +22,18 @@ label renpyper_traits:
             
             def incdec_(): pass # Function object that is used for incrementing
             
-            def __init__(self, value = 500, top = 1000, bottom = 0, mode = RENPYPER_LINEAR, incdec = incdecLinear, topName = "", bottomName = ""):
+            def __init__(self, val = 500, top = 1000, bottom = 0, mode = RENPYPER_LINEAR, incdec = incdecLinear, topName = "", bottomName = ""):
                 """ Constructor """
                 self.top_ = top
                 self.bottom_ = bottom
-                if (value > top):
-                    value_ = top
-                elif (value < bottom):
-                    value_ = bottom
-                elif (value):
-                    value_ = value
+                if (val > self.top_):
+                    self.value_ = top
+                elif (val < self.bottom_):
+                    self.value_ = bottom
+                elif (val):
+                    self.value_ = val
                 else:
-                    value_ = math.floor((top_ + bottom_) / 2)
+                    self.value_ = math.floor((top_ + bottom_) / 2)
                 self.mode_ = mode
                 self.nameTop_ = topName
                 self.nameBottom_ = bottomName
@@ -66,7 +66,12 @@ label renpyper_traits:
                 E.g.: A complete loss of trust after a failed murder attempt.
                 Other methods that provide smoother value changes are better in most cases.
                 """
-                self.value_ = newValue
+                if (newValue > self.top_):
+                    self.value_ = self.top_
+                elif (newValue < self.bottom_):
+                    self.value_ = self.bottom_
+                else:
+                    self.value_ = newValue
                 
             def set(self, newValue = 500):
                 """ Shortcut for setValue() """
