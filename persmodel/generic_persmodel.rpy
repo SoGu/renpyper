@@ -3,7 +3,7 @@
 # This class is an interface and provides common basic functionality.
 label renpyper_genericPersmod:
     python:
-        class PersModel:
+        class PersModel(object):
             def __init__(self):
                 pass
             
@@ -15,9 +15,9 @@ label renpyper_genericPersmod:
                 
 
         #define the modes for numeric variables
-        LINEAR = 1
+        RENPYPER_LINEAR = 1
         
-        MANUAL = 99
+        RENPYPER_MANUAL = 99
         
     return
     

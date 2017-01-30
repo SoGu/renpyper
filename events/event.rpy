@@ -1,6 +1,6 @@
 label renpyper_events:
     python:
-        class Event():
+        class Event(object):
             involvedCharacters_ = []
             
             def __init__(self, listOfCharacters):

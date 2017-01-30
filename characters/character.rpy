@@ -1,13 +1,13 @@
 label renpyper_characters:
-    python:        
-        class RenpyperCharacter:
+    python:
+        
+        class RenpyperCharacter(object):
             # For easy storytelling, every renpyper character gets a native Ren'Py character as a member.
             # This makes writing dialog easier.
             rc_ = Character('', color="#000000")
             
             # A dictionary of all the traits the character has.
-            # Should be a complete list of all defined traits.
-            traits_ = dict()
+            traits_ = {}
             
             # This variable indicates, if this character is controlled by the user or not.
             # Is needed so the "AI" knows when to pick an answer and when to ask the user for one.
@@ -18,5 +18,6 @@ label renpyper_characters:
             def __init__(self, name, col, player=False):
                 self.rc_ = Character(name, color=col)
                 self.player_ = player
+                self.traits_ = copy.deepcopy(global_traits)
             
     return

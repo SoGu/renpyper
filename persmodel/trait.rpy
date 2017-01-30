@@ -1,4 +1,7 @@
 label renpyper_traits:
+        
+    call renpyper_trait_utils
+    
     python:
         class Trait(PersModel):
             """A trait object is a personality trait that describes a personality aspect of a character.
@@ -12,25 +15,42 @@ label renpyper_traits:
             top_ = 0    # The highest value that value_ can have.
             bottom_ = 0 # The lowest value that value_ can have.
 
-            mode_ = LINEAR      # The mode of operation of the increment function. Linear by default.
+            mode_ = RENPYPER_LINEAR      # The mode of operation of the increment function. Linear by default.
             
             nameTop_ = ""       # How the high value of this trait is called
             nameBottom_ = ""    # How the low value of this trait is called
             
             def incdec_(): pass # Function object that is used for incrementing
             
-            def __init__(self, value = 500, top = 1000, bottom = 0, mode = LINEAR, incdec = incdecLinear, topName = "", bottomName = ""):
+            def __init__(self, value = 500, top = 1000, bottom = 0, mode = RENPYPER_LINEAR, incdec = incdecLinear, topName = "", bottomName = ""):
                 """ Constructor """
-                self.value_ = value
                 self.top_ = top
                 self.bottom_ = bottom
+                if (value > top):
+                    value_ = top
+                elif (value < bottom):
+                    value_ = bottom
+                elif (value):
+                    value_ = value
+                else:
+                    value_ = math.floor((top_ + bottom_) / 2)
                 self.mode_ = mode
                 self.nameTop_ = topName
                 self.nameBottom_ = bottomName
-                if (self.mode_ == MANUAL):
+                if (self.mode_ == RENPYPER_MANUAL):
                     self.incdec_ = incdec
-                elif (self.mode_ == LINEAR):
+                elif (self.mode_ == RENPYPER_LINEAR):
                     self.incdec_ = incdecLinear
+                    
+            def __deepcopy__(self, memo):
+                newTrait = type(self)()
+                newTrait.value_ = copy.deepcopy(self.value_, memo)
+                newTrait.top_ = copy.deepcopy(self.top_, memo)
+                newTrait.bottom_ = copy.deepcopy(self.bottom_, memo)
+                newTrait.mode_ = copy.deepcopy(self.mode_, memo)
+                newTrait.nameTop_ = copy.deepcopy(self.nameTop_, memo)
+                newTrait.nameBottom_ = copy.deepcopy(self.nameBottom_, memo)
+                return newTrait
             
             def getValue(self):
                 """ The basic getter method. Use only this method to receive the trait value. """
@@ -53,7 +73,7 @@ label renpyper_traits:
                 self.setValue(newValue)
                               
             def inc(self, var):
-                if (self.mode_ == LINEAR):
+                if (self.mode_ == RENPYPER_LINEAR): # CORRECT?
                     self.value_ = self.incdec_(var, self.value_, self.top_, self.bottom_)
                     if (self.value_ > self.top_):
                         self.value_ = self.top_
