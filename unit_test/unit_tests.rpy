@@ -7,10 +7,9 @@ label start:
     scene bg room
     show eileen happy
     
-    # TODO: Test Trait generation, copying and data manipulation
     call unit_test_traits
     
-    # TODO: Test Character generation and data manipulation
+    call unit_test_characters
     
     "All unit tests completed."
     

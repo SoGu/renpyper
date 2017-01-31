@@ -15,9 +15,15 @@ label renpyper_characters:
                 
             # Constructor
             # Creates the Ren'Py character internally to be used later in renpyper events
-            def __init__(self, name, col, player=False):
+            def __init__(self, name = '', col = "#000000", player=False):
                 self.rc_ = Character(name, color=col)
                 self.player_ = player
                 self.traits_ = copy.deepcopy(global_traits)
+                
+            def getTrait(self, key):
+                return self.traits_[key]
+                
+            def isPlayer(self):
+                return self.player_
             
     return
