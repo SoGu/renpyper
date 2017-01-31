@@ -78,12 +78,11 @@ label renpyper_traits:
                 self.setValue(newValue)
                               
             def inc(self, var):
-                if (self.mode_ == RENPYPER_LINEAR): # CORRECT?
-                    self.value_ = self.incdec_(var, self.value_, self.top_, self.bottom_)
-                    if (self.value_ > self.top_):
-                        self.value_ = self.top_
-                    if (self.value_ < self.bottom_):
-                        self.value_ = self.bottom_
+                self.value_ = self.incdec_(var, self.value_, self.top_, self.bottom_)
+                if (self.value_ > self.top_):
+                    self.value_ = self.top_
+                if (self.value_ < self.bottom_):
+                    self.value_ = self.bottom_
                     
             def topName(self):
                 """ Return a word for the top value. E.g. 'trust' """
