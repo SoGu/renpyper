@@ -9,6 +9,8 @@ label renpyper_init:
     
     call renpyper_characters
     
+    call renpyper_event
+    
     ### Here starts the user-generated content ###
     
     #call renpyper_model_traits

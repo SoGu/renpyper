@@ -11,6 +11,8 @@ label start:
     
     call unit_test_characters
     
+    call unit_test_events
+    
     "All unit tests completed."
     
     return
