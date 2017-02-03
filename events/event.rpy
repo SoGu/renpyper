@@ -7,15 +7,17 @@ label renpyper_event:
             
             active_ = False
             
-            def __init__(self, listOfCharacters):
-                self.involvedCharacters_ = list(listOfCharacters)
+            def __init__(self):
+                pass
                 
-            def start(self):
+            def start(self, listOfCharacters = []):
                 self.occured_ += 1
                 self.active_ = True
+                self.involvedCharacters_ = list(listOfCharacters)
                 
             def end(self):
                 self.active_ = False
+                self.involvedCharacters_ = []
                 
             def resetOccured(self, resetTo = 0):
                 self.occured_ = resetTo

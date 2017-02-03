@@ -6,8 +6,8 @@ label unit_test_events:
     $ char2 = RenpyperCharacter(name = 'Juliet')
     $ listOfCharacters = [char1, char2]
     
-    $ testEvent = RenpyperEvent(listOfCharacters)
-    $ testEvent.start()
+    $ testEvent = RenpyperEvent()
+    $ testEvent.start(listOfCharacters)
     if not testEvent.hasOccured():
         "Starting the test event or setting the occurence counter didn't work."
     $ testEvent.resetOccured()
@@ -15,7 +15,7 @@ label unit_test_events:
         "Resetting the occurence counter didn't work."
     python:
         for x in range(0,10):
-            testEvent.start()
+            testEvent.start(listOfCharacters)
     if testEvent.occurences() != 10:
         "Number of occurences does not match the number of times the event was started. Was there a problem with resetting the counter?"
     
