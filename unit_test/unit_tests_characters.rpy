@@ -20,4 +20,20 @@ label unit_test_characters:
     
     $ global_traits.clear()
     
+    
+    $ global_flags['Vampire'] = Renpyper_Flag()
+    
+    $ testChar1 = RenpyperCharacter()
+    $ testChar2 = RenpyperCharacter()
+    $ testChar1.getFlag('Vampire').setValue(True)
+    if testChar1.getFlag('Vampire').get() is not True:
+        "Setting a flag of a character to a certain value didn't work."
+    $ testChar2.getFlag('Vampire').setValue(False)
+    if testChar1.getFlag('Vampire').get() is not True:
+        "Deep copying the global flags dictionary of traits on character generation didn't work."
+    $ del testChar1
+    $ del testChar2
+    
+    $ global_flags.clear()
+    
     return
