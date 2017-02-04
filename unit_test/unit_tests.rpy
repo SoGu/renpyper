@@ -9,6 +9,8 @@ label start:
     
     call unit_test_traits
     
+    call unit_test_flags
+    
     call unit_test_characters
     
     call unit_test_events

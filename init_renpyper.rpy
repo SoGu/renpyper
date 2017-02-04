@@ -7,6 +7,8 @@ label renpyper_init:
 
     call renpyper_traits
     
+    call renpyper_flags
+    
     call renpyper_characters
     
     call renpyper_event
