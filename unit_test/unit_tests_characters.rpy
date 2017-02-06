@@ -36,4 +36,14 @@ label unit_test_characters:
     
     $ global_flags.clear()
     
+    $ global_properties['eye color'] = RenpyperProperty('blue')
+    
+    $ testChar1 = RenpyperCharacter()
+    $ testChar2 = RenpyperCharacter()
+    $ testChar2.getProp('eye color').set('white')
+    if testChar1.getProp('eye color').get() == 'white':
+        "Deep copying a property object didn't work correctly."
+    $ del testChar1
+    $ del testChar2
+    
     return

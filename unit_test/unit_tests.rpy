@@ -15,6 +15,8 @@ label start:
     
     call unit_test_events
     
+    call unit_test_properties
+    
     "All unit tests completed."
     
     return

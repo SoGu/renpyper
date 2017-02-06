@@ -15,6 +15,9 @@ label renpyper_characters:
             # A dictionary of all the flags the character has.
             flags_ = {}
             
+            # A dictionary of all the properties the character has.
+            props_ = {}
+            
             # This variable indicates, if this character is controlled by the user or not.
             # Is needed so the "AI" knows when to pick an answer and when to ask the user for one.
             player_ = False
@@ -26,6 +29,7 @@ label renpyper_characters:
                 self.player_ = player
                 self.traits_ = copy.deepcopy(global_traits)
                 self.flags_ = copy.deepcopy(global_flags)
+                self.props_ = copy.deepcopy(global_properties)
                 
             def getTrait(self, key):
                 return self.traits_[key]
@@ -41,5 +45,11 @@ label renpyper_characters:
                 
             def setPath(self, path):
                 self.resourcePath_ = path
+                
+            def getProperty(self, key):
+                return self.props_[key]
+                
+            def getProp(self, key):
+                return self.getProperty(key)
             
     return

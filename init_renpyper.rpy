@@ -9,16 +9,10 @@ label renpyper_init:
     
     call renpyper_flags
     
+    call renpyper_properties
+    
     call renpyper_characters
     
     call renpyper_event
-    
-    ### Here starts the user-generated content ###
-    
-    #call renpyper_model_traits
-    
-    #call renpyper_gameCharacters
-    
-    #call renpyper_events
     
     return
