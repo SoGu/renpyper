@@ -11,6 +11,8 @@ label renpyper_init:
     
     call renpyper_properties
     
+    call renpyper_abilities
+    
     call renpyper_characters
     
     call renpyper_event
