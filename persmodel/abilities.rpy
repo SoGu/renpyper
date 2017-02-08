@@ -1,35 +1,46 @@
 label renpyper_abilities:
     
-    global_abilities = {}
+    $ global_abilities = {}
     
     python:
         class RenpyperAbility(Trait): 
             # How fast a character can achieve an ability.
-            talent_ = 0
+            talent_ = 0.0
             
-            base_ = 1
+            # Base learning rate, is added to talent.
+            base_ = 1.0
             
-            def __init__(self, base = 1, talent = 0, val = 0, top = 1000, bottom = 0, mode = RENPYPER_LINEAR, incdec = incdecLinear, topName = "", bottomName = ""):
+            superCharacterKey_ = ''
+            
+            def influence_(): pass
+            
+            def __init__(self, base = 1, talent = 0, val = 0, top = 1000, bottom = 0,
+                mode = RENPYPER_LINEAR_ABILITY, incdec = incdecLinear, topName = "", bottomName = "",
+                influence = emptyAbilityInfluenceFunction):
                 super(RenpyperAbility, self).__init__(val, top, bottom, mode, incdec, topName, bottomName)
                 self.talent_ = talent
                 self.base_ = base
+                self.influence_ = influence
+                if self.mode_ == RENPYPER_LINEAR_ABILITY:
+                    self.incdec_ = incdecLinearAbility
                 
             def getValue(self):
                 return self.value_
-               
-            # Warning: Do only use this method when initializing an object.
-            # Every other way of using it may cause unintended behaviour.
-            def setValue(self, newValue):
-                self.value_ = newValue
                 
             def get(self):
-                return self.getValue()
+                return self.getValue() + self.influence_(self.superCharacterKey_)
                 
-            def set(self, newValue):
-                self.setValue(newValue)
+            def getRawValue(self):
+                return self.getValue()
                 
             def getTalent(self):
                 return self.talent_
+                
+            def setTalent(self, talent):
+                self.talent_ = talent
+                
+            def getBase(self):
+                return self.base_
                 
             def __deepcopy__(self, memo):
                 newAb = type(self)()
@@ -42,6 +53,16 @@ label renpyper_abilities:
                 newAb.talent_ = copy.deepcopy(self.talent_, memo)
                 newAb.base_ = copy.deepcopy(self.base_, memo)
                 return newAb
+                
+            def learn(self, var):
+                self.value_ = self.incdec_(self.value_, var, self.talent_, self.base_)
+                if self.value_ > self.top_:
+                    self.value_ = self.top_
+                if self.value_ < self.bottom_:
+                    self.value_ = self.bottom_
+                    
+            def setKey(self, key):
+                self.superCharacterKey_ = key
                 
     return
     

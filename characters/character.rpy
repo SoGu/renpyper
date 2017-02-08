@@ -1,6 +1,8 @@
 label renpyper_characters:
     python:
         
+        global_characters = {}
+        
         class RenpyperCharacter(object):
             # For easy storytelling, every renpyper character gets a native Ren'Py character as a member.
             # This makes writing dialog easier.
@@ -8,6 +10,8 @@ label renpyper_characters:
             
             # Path to the directory where the resources for this character are saved.
             resourcePath_ = ''
+            
+            name_ = ''
             
             # Dictionaries of the different personality model objects.
             traits_ = {}
@@ -28,6 +32,12 @@ label renpyper_characters:
                 self.flags_ = copy.deepcopy(global_flags)
                 self.props_ = copy.deepcopy(global_properties)
                 self.abilities_ = copy.deepcopy(global_abilities)
+                self.name_ = name
+                if name != '':
+                    global_characters[name] = self
+                    
+            def __del__(self):
+                del global_characters[self.name_]
                 
             def getTrait(self, key):
                 return self.traits_[key]
@@ -57,3 +67,4 @@ label renpyper_characters:
                 return self.getAbility(key)
             
     return
+    
