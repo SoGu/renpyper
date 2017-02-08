@@ -30,10 +30,12 @@ label renpyper_traits:
                     self.value_ = top
                 elif (val < self.bottom_):
                     self.value_ = bottom
+                elif val == 0:
+                    self.value_ = 0
                 elif (val):
                     self.value_ = val
                 else:
-                    self.value_ = math.floor((top_ + bottom_) / 2)
+                    self.value_ = math.floor((self.top_ + self.bottom_) / 2)
                 self.mode_ = mode
                 self.nameTop_ = topName
                 self.nameBottom_ = bottomName
@@ -78,7 +80,7 @@ label renpyper_traits:
                 self.setValue(newValue)
                               
             def inc(self, var):
-                self.value_ = self.incdec_(var, self.value_, self.top_, self.bottom_)
+                self.value_ = self.incdec_(var, self.value_)
                 if (self.value_ > self.top_):
                     self.value_ = self.top_
                 if (self.value_ < self.bottom_):
@@ -93,3 +95,4 @@ label renpyper_traits:
                 return self.nameBottom_
                 
     return
+    

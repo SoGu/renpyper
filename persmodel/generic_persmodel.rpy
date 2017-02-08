@@ -19,5 +19,7 @@ label renpyper_genericPersmod:
         
         RENPYPER_MANUAL = 99
         
+        RENPYPER_LINEAR_ABILITY = 101
+        
     return
     

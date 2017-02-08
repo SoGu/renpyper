@@ -1,6 +1,8 @@
 label renpyper_characters:
     python:
         
+        global_characters = {}
+        
         class RenpyperCharacter(object):
             # For easy storytelling, every renpyper character gets a native Ren'Py character as a member.
             # This makes writing dialog easier.
@@ -9,14 +11,13 @@ label renpyper_characters:
             # Path to the directory where the resources for this character are saved.
             resourcePath_ = ''
             
-            # A dictionary of all the traits the character has.
+            name_ = ''
+            
+            # Dictionaries of the different personality model objects.
             traits_ = {}
-            
-            # A dictionary of all the flags the character has.
             flags_ = {}
-            
-            # A dictionary of all the properties the character has.
             props_ = {}
+            abilities_ = {}
             
             # This variable indicates, if this character is controlled by the user or not.
             # Is needed so the "AI" knows when to pick an answer and when to ask the user for one.
@@ -30,6 +31,13 @@ label renpyper_characters:
                 self.traits_ = copy.deepcopy(global_traits)
                 self.flags_ = copy.deepcopy(global_flags)
                 self.props_ = copy.deepcopy(global_properties)
+                self.abilities_ = copy.deepcopy(global_abilities)
+                self.name_ = name
+                if name != '':
+                    global_characters[name] = self
+                    
+            def __del__(self):
+                del global_characters[self.name_]
                 
             def getTrait(self, key):
                 return self.traits_[key]
@@ -51,5 +59,12 @@ label renpyper_characters:
                 
             def getProp(self, key):
                 return self.getProperty(key)
+                
+            def getAbility(self, key):
+                return self.abilities_[key]
+                
+            def getAb(self, key):
+                return self.getAbility(key)
             
     return
+    

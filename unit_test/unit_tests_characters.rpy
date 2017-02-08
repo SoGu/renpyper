@@ -1,5 +1,25 @@
 label unit_test_characters:
     
+    $ testChar = RenpyperCharacter(name = 'Larry')
+    
+    if len(global_characters) != 1:
+        "A character adding itself to the global character list didn't work."
+        
+    if global_characters['Larry'] is not testChar:
+        "A character didn't add itself to the global character list correctly."
+        
+    $ testChar2 = RenpyperCharacter(name = 'Test')
+    
+    if len(global_characters) != 2:
+        "Deleting a character didn't remove it from the global character list."
+        
+    $ testChar.__del__()
+    $ testChar2.__del__()
+    
+    if len(global_characters) != 0:
+        "Deleting a character didn't remove it from the global character list."
+    
+    
     $ global_traits['trust'] = Trait()
     
     $ testChar = RenpyperCharacter(name = 'John', col = "#000000")
@@ -46,4 +66,43 @@ label unit_test_characters:
     $ del testChar1
     $ del testChar2
     
+    
+    $ global_abilities['dancing'] = RenpyperAbility(topName = 'Dance', base = 1.0)
+    
+    $ testChar1 = RenpyperCharacter()
+    $ testChar1.getAb('dancing').set(15)
+    if testChar1.getAb('dancing').get() != 15:
+        "Setting a value in an ability didn't work correctly."
+    $ testChar1.getAb('dancing').setTalent(2.0)
+    if testChar1.getAb('dancing').getTalent() != 2.0:
+        "Setting a talent value in an ability didn't work correctly."
+    $ testChar1.getAb('dancing').learn(10)
+    if testChar1.getAb('dancing').get() != 45:
+        "Learning an ability didn't work correctly."
+    $ del testChar1
+    $ global_abilities.clear()
+    
+    
+    $ global_traits['size'] = Trait(bottom = 0, top = 250)
+    
+    python:
+        def testInflFunc(key):
+            return (global_characters[key].getTrait('size').get() - 170) / 5
+    
+    $ global_abilities['dancing'] = RenpyperAbility(topName = 'Dance', base = 1.0, talent = 0.0, influence = testInflFunc)
+    
+    $ testChar = RenpyperCharacter(name = 'ABC')
+    $ testChar.getTrait('size').set(180)
+    $ testChar.getAb('dancing').setKey('ABC')
+    
+    $ testChar.getAb('dancing').set(10)
+    if testChar.getAb('dancing').get() == 12:
+        "Providing and using an influence function for abilities didn't work correctly."
+    
+    $ global_traits.clear()
+    $ del testChar
+    $ global_abilities.clear()
+    $ del testInflFunc
+    
     return
+    
