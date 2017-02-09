@@ -19,6 +19,10 @@ label start:
     
     call unit_test_abilities
     
+    call unit_test_roles
+    
+    call unit_test_roleSystems
+    
     "All unit tests completed."
     
     return
