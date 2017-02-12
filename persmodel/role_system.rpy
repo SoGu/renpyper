@@ -18,13 +18,13 @@ label renpyper_roleSystems:
                 self.name_ = name
                 
             def grant(self, char, role):
-                if self.isRoleFree(role):
-                    for i in self.role_list_:
-                        if i.getName() == role:
-                            i.grant(char)
-                            break
-                else:
-                    return
+                # if self.isRoleFree(role):
+                for i in self.role_list_:
+                    if i.getName() == role:
+                        i.grant(char)
+                        break
+                #else:
+                #    return
                             
             def fire(self, role, char = None):
                 for i in self.role_list_:
@@ -44,18 +44,27 @@ label renpyper_roleSystems:
                             return i.getName()
                 return ''
                 
-            ## Finds all the occurences of a Role with the given name and returns them as part of a list.
+            ## Finds all roles that the given character has.
             def getAllRoles(self, name):
                 pass
                 
             ## Finds one (undefined) CHARACTER with the given name and returns the ROLE it is in.
             ## Should only be used if the author is sure the character has only that one role.
             def find(self, name):
-                pass
+                for i in self.role_list_:
+                    if i.name_ == name:
+                        if i.getChar() is not None:
+                            return i.getChar().name_
+                return ''
                 
-            ## Finds all CHARACTERS with the given name and returns the ROLE they are in as part of a list.
-            def findAll(self):
-                pass
+            ## Finds all CHARACTERS with the given role and returns their name as part of a list.
+            def findAll(self, role):
+                listOfChar = []
+                for i in self.role_list_:
+                    if i.name_ == role and i.getChar() is not None:
+                        listOfChar.append(i.getChar().name_)
+                return listOfChar
+                    
                 
             ## Returns true if there is at least one role slot with the given name that is not blocked by a character.
             ## Returns false otherwise.

@@ -6,7 +6,7 @@ label renpyper_role:
             name_ = ''
             
             ## Character currently in this role
-            character_ = None
+            character_ = []
             
             ## Who can grant this position to a character.
             ## Can only be a position within the Role System.
@@ -21,13 +21,20 @@ label renpyper_role:
                 self.number_ = nu
                 
             def grant(self, character):
-                self.character_ = character
+                if len(self.character_) < self.number_:
+                    self.character_.append(character)
                 
-            def fire(self):
-                self.character_ = None
+            def fire(self, char = None):
+                if char is None:
+                    self.character_ = []
+                else:
+                    self.character_ = list(filter(lambda x: x != char, a))
                 
             def getChar(self):
-                return self.character_
+                if len(self.character_) > 0:
+                    return self.character_[0]
+                else:
+                    return None
                 
             def getCharacter(self):
                 return self.getChar()
@@ -39,10 +46,10 @@ label renpyper_role:
                 return self.name_
                 
             def isFree(self):
-                if self.character_ is not None:
-                    return False
-                else:
+                if len(self.character_) < self.number_:
                     return True
+                else:
+                    return False
                 
             """def __deepcopy__(self, memo):
                 newRole = type(self)()
