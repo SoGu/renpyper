@@ -15,6 +15,8 @@ label renpyper_init:
     
     call renpyper_characters
     
+    call renpyper_roleSystems
+    
     call renpyper_event
     
     return
