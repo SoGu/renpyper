@@ -19,10 +19,13 @@ label renpyper_role:
                 self.name_ = na
                 self.grantableBy_ = gr
                 self.number_ = nu
+                self.character_ = []
                 
-            def grant(self, character):
-                if len(self.character_) < self.number_:
+            def grant(self, character, grantedBy = ''):
+                duplicate = False
+                if len(self.character_) < self.number_ and (grantedBy == '' or self.grantableBy_ == grantedBy):
                     self.character_.append(character)
+                    self.character_ = list(set(self.character_))
                 
             def fire(self, char = None):
                 if char is None:
@@ -50,6 +53,12 @@ label renpyper_role:
                     return True
                 else:
                     return False
+                    
+            def numOfCharacters(self):
+                return len(self.character_)
+                
+            def getAllCharacters(self):
+                return list(self.character_)
                 
             """def __deepcopy__(self, memo):
                 newRole = type(self)()

@@ -18,13 +18,10 @@ label renpyper_roleSystems:
                 self.name_ = name
                 
             def grant(self, char, role):
-                # if self.isRoleFree(role):
                 for i in self.role_list_:
                     if i.getName() == role:
                         i.grant(char)
                         break
-                #else:
-                #    return
                             
             def fire(self, role, char = None):
                 for i in self.role_list_:
@@ -46,7 +43,12 @@ label renpyper_roleSystems:
                 
             ## Finds all roles that the given character has.
             def getAllRoles(self, name):
-                pass
+                roles = []
+                for i in self.role_list_:
+                    for j in i.getAllCharacters():
+                        if j.name_ == name:
+                            roles.append(i.getName())
+                return list(roles)
                 
             ## Finds one (undefined) CHARACTER with the given name and returns the ROLE it is in.
             ## Should only be used if the author is sure the character has only that one role.
@@ -54,27 +56,24 @@ label renpyper_roleSystems:
                 for i in self.role_list_:
                     if i.name_ == name:
                         if i.getChar() is not None:
-                            return i.getChar().name_
-                return ''
+                            return i.getChar()
+                return None
                 
             ## Finds all CHARACTERS with the given role and returns their name as part of a list.
             def findAll(self, role):
-                listOfChar = []
                 for i in self.role_list_:
-                    if i.name_ == role and i.getChar() is not None:
-                        listOfChar.append(i.getChar().name_)
-                return listOfChar
+                    if i.name_ == role:
+                        return i.getAllCharacters()
                     
                 
             ## Returns true if there is at least one role slot with the given name that is not blocked by a character.
             ## Returns false otherwise.
             def isRoleFree(self, role):
-                free = True
                 for i in self.role_list_:
                     if i.getName() == role:
                         if i.isFree() is False:
-                            free = False
-                return free
+                            return False
+                return True
     
     return
     
