@@ -13,7 +13,7 @@ label renpyper_trait_utils:
             return 0
             
         def defaultMoodTimeHookFunction(current, time, helper):
-            return current - (time * (helper + 1))
+            return current + (time * (helper + 1))
 
     return
     

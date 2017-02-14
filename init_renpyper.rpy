@@ -21,4 +21,6 @@ label renpyper_init:
     
     call renpyper_event
     
+    call renpyper_goals
+    
     return
