@@ -21,5 +21,7 @@ label renpyper_genericPersmod:
         
         RENPYPER_LINEAR_ABILITY = 101
         
+        RENPYPER_LINEAR_MOOD = 201
+        
     return
     

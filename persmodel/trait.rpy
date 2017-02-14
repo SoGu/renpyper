@@ -94,5 +94,11 @@ label renpyper_traits:
                 """ Return a word for the top value. E.g. 'mistrust' """
                 return self.nameBottom_
                 
+            def getTopName(self):
+                return self.topName()
+                
+            def getBottomName(self):
+                return self.bottomName()
+                
     return
     

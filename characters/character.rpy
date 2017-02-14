@@ -18,6 +18,7 @@ label renpyper_characters:
             flags_ = {}
             props_ = {}
             abilities_ = {}
+            moods_ = {}
             
             # This variable indicates, if this character is controlled by the user or not.
             # Is needed so the "AI" knows when to pick an answer and when to ask the user for one.
@@ -32,6 +33,7 @@ label renpyper_characters:
                 self.flags_ = copy.deepcopy(global_flags)
                 self.props_ = copy.deepcopy(global_properties)
                 self.abilities_ = copy.deepcopy(global_abilities)
+                self.moods_ = copy.deepcopy(global_moods)
                 self.name_ = name
                 if name != '':
                     global_characters[name] = self
@@ -65,6 +67,12 @@ label renpyper_characters:
                 
             def getAb(self, key):
                 return self.getAbility(key)
+                
+            def getMood(self, key):
+                return self.moods_[key]
+                
+            def mood(self, key):
+                return self.getMood(key)
             
     return
     

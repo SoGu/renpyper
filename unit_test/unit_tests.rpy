@@ -19,6 +19,8 @@ label start:
     
     call unit_test_abilities
     
+    call unit_tests_moods
+    
     call unit_test_roles
     
     call unit_test_roleSystems
