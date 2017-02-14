@@ -11,6 +11,9 @@ label renpyper_trait_utils:
             
         def emptyAbilityInfluenceFunction(key):
             return 0
+            
+        def defaultMoodTimeHookFunction(time):
+            pass
 
     return
     

@@ -9,6 +9,8 @@ label renpyper_init:
     
     call renpyper_flags
     
+    call renpyper_moods
+    
     call renpyper_properties
     
     call renpyper_abilities
