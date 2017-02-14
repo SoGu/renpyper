@@ -7,8 +7,10 @@ label renpyper_event:
             
             active_ = False
             
-            def __init__(self):
-                pass
+            duration_ = 0
+            
+            def __init__(self, duration = 0):
+                self.duration_ = duration
                 
             def start(self, listOfCharacters = []):
                 self.occured_ += 1
@@ -17,6 +19,9 @@ label renpyper_event:
                 
             def end(self):
                 self.active_ = False
+                for i in self.involvedCharacters_:
+                    for j in i.moods_:
+                        i.moods_[j].timeHook(self.duration_)
                 self.involvedCharacters_ = []
                 
             def resetOccured(self, resetTo = 0):

@@ -1,5 +1,7 @@
 label renpyper_moods:
     
+    $ global_moods = {}
+    
     python:
         class RenpyperMood(Trait):
             helper_ = 0
@@ -22,7 +24,7 @@ label renpyper_moods:
                 newMood.nameTop_ = copy.deepcopy(self.nameTop_, memo)
                 newMood.nameBottom_ = copy.deepcopy(self.nameBottom_, memo)
                 newMood.timeHook_ = copy.deepcopy(self.timeHook_, memo)
-                return newAb
+                return newMood
                 
             def timeHook(self, time, helper = 0):
                 self.value_ = self.timeHook_(self.value_, time, helper)
