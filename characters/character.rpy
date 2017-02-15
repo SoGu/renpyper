@@ -49,6 +49,9 @@ label renpyper_characters:
             def getTrait(self, key):
                 return self.traits_[key]
                 
+            def trait(self, key):
+                return self.getTrait(key)
+                
             def getFlag(self, key):
                 return self.flags_[key]
                 
