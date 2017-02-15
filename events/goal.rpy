@@ -6,9 +6,9 @@ label renpyper_goals:
         class RenpyperGoal(object):
             name_ = ''
             
-            goals_ = {}
+            goals_ = []
             
-            events_ = {}
+            events_ = []
             
             relativeImportance_ = 1
             
@@ -22,8 +22,8 @@ label renpyper_goals:
                 self.persistent_ = persistent
                 self.name_ = name
                 self.relativeImportance_ = importance
-                self.goals_ = {}
-                self.events_ = {}
+                self.goals_ = []
+                self.events_ = []
                 
             def __deepcopy__(self, memo):
                 newGoal = type(self)(self.reached_)
@@ -39,8 +39,8 @@ label renpyper_goals:
             def addGoal(self, goal, effectiveness, bias):
                 pass
                 
-            def addEvent(self, effectiveness, bias):
-                pass
+            def addEvent(self, event, effectiveness):
+                self.events_.append([event, effectiveness])
                 
             def updateImportance(self):
                 pass

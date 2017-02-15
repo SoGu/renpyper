@@ -17,12 +17,26 @@ label unit_test_goals:
     $ testChar1 = RenpyperCharacter(name = 'Brian')
     $ testChar2 = RenpyperCharacter(name = 'Monty')
     
-    if testChar1.goal('Sleep').reached(testChar1.getName()) != False:
+    if testChar1.goal('Sleep').reached('Brian') != False:
         "Basic setup of a system using goals didn't work."
     # make Monty awake now:
     $ testChar2.mood('Tiredness').value_ = 50
     if testChar2.goal('Sleep').reached(testChar2.getName()) != True:
         "Determining if a goal was reached didn't work correctly."
+
+    python:
+        eventSleep = RenpyperEvent(name = 'Go to bed')
+        
+        def effectEventSleep(character):
+            global_characters[character].mood('Tiredness').inc(-500)
+            
+        eventSleep.addEffect(effectEventSleep)
+        
+        global_goals['Sleep'].addEvent(event = eventSleep, effectiveness = 100)
+        
+    if global_goals['Sleep'].events_[0][0] != eventSleep:
+        "Adding an event to a goal didn't work."
+        
         
     
         
