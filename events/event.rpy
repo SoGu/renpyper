@@ -3,6 +3,8 @@ label renpyper_event:
         class RenpyperEvent(object):
             name_ = ''
             
+            label_ = ''
+            
             involvedCharacters_ = []
             
             occured_ = 0
@@ -13,9 +15,10 @@ label renpyper_event:
             
             effects_ = []
             
-            def __init__(self, duration = 0, name = ''):
+            def __init__(self, duration = 0, name = '',  label = ''):
                 self.duration_ = duration
                 self.name_ = name
+                self.label_ = label
                 self.effects_ = []
                 
             def start(self, listOfCharacters = []):

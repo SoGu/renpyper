@@ -101,7 +101,7 @@ label unit_test_events:
         
         eventTrain = RenpyperEvent(name = 'Training', duration = 3)
         eventPlay = RenpyperEvent(name = 'Match', duration = 2)
-        eventRest = RenpyperEvent(name = 'Rest', duration = 6)
+        eventRest = RenpyperEvent(name = 'Rest', duration = 6, label = 'unit_test_event_rest')
         
         def effectOfTrain(character):
             global_characters[character].trait('experience').inc(1)
@@ -138,6 +138,14 @@ label unit_test_events:
         athlete3.trait('experience').get() != 28):
         "Something regarding events and event effects didn't work correctly."
         
+    $ wasInEvent = False
+    $ jumpTo = eventRest.label_
+    $ renpy.call(jumpTo)
+    if not wasInEvent:
+        "Jumping to a label defined in an event didn't work."
+    $ del jumpTo
+    $ del wasInEvent
+        
     python:
         del effectOfTrain
         del effectOfPlay
@@ -150,6 +158,10 @@ label unit_test_events:
         del athlete1
         del athlete2
         del athlete3
-    
+        
+    return
+        
+label unit_test_event_rest:
+    $ wasInEvent = True
     return
     
