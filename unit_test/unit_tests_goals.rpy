@@ -1,7 +1,7 @@
 label unit_test_goals:
     
-    $ testGoal = RenpyperGoal(reached = lambda x: False, name = 'Sleep', importance = 0)
-    if testGoal.name_ != 'Sleep' or testGoal.relativeImportance_ != 0:
+    $ testGoal = RenpyperGoal(reached = lambda x: False, name = 'Sleep')
+    if testGoal.name_ != 'Sleep':
         "Creating a simple Goal object didn't work."
     $ del testGoal
     
@@ -36,9 +36,11 @@ label unit_test_goals:
         
     if global_goals['Sleep'].events_[0][0] != eventSleep:
         "Adding an event to a goal didn't work."
-        
-        
     
+    $ testGoal2 = RenpyperGoal(reached = lambda x: False, name = 'Fit for race day')
+    $ testGoal2.addGoal(global_goals['Sleep'], effectiveness = 20)
+    if testGoal2.goals_[0][0] != global_goals['Sleep'] or testGoal2.goals_[0][1] != 20:
+        "Adding a goal to a goal didn't work."
         
     $ del testChar1
     $ del testChar2
