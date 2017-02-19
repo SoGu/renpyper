@@ -27,7 +27,7 @@ label renpyper_event:
                 self.involvedCharacters_ = list(listOfCharacters)
                 
             def end(self):
-                self.applyEffects()
+                # self.applyEffects()
                 for i in self.involvedCharacters_:
                     for j in i.moods_:
                         i.moods_[j].timeHook(self.duration_)

@@ -41,6 +41,7 @@ label unit_test_events:
         "Adding an effect to an event didn't work."
         
     $ testEvent.start([char2]) # send Juliet to bed
+    $ testEvent.applyEffects()
     $ testEvent.end()
     if char2.mood('tiredness').get() != 100:
         "Applying the automatic effects of an event to characters didn't work."
@@ -53,6 +54,7 @@ label unit_test_events:
         "Adding an effect with a specific character to an event didn't work."
         
     $ testEvent.start([char1, char2]) # now send both to bed although the effect only applies to char1
+    $ testEvent.applyEffects()
     $ testEvent.end()
     
     $ char2.mood('tiredness').value_ = 555 # cheat to set the value manually
@@ -66,12 +68,6 @@ label unit_test_events:
     $ global_traits.clear()
     $ global_moods.clear()
     $ del testEvent
-    
-    # TODO :
-    # Add a more thorough test suite:
-    # At least 3 characters
-    # At least 3 traits
-    # At least 3 events that influence those characters (traits)
     
     python:
         global_traits['determination'] = Trait(top = 100, bottom = 0, val = 50, topName = 'determined', mode = RENPYPER_LINEAR)
@@ -121,6 +117,7 @@ label unit_test_events:
         eventRest.addEffect(effectOfRest)
             
         eventTrain.start([athlete1, athlete2])
+        eventTrain.applyEffects()
         eventTrain.end()
     if (athlete1.trait('experience').get() != 77 or
         athlete1.mood('fitness').get() != 95 or
@@ -132,6 +129,7 @@ label unit_test_events:
         "Something regarding events and event effects didn't work correctly."
         
     $ eventPlay.start([athlete1, athlete3, athlete2])
+    $ eventPlay.applyEffects()
     $ eventPlay.end()
     if (athlete1.trait('determination').get() != 86 or
         athlete1.mood('fitness').get() != 85 or
