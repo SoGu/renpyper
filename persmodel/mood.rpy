@@ -14,6 +14,8 @@ label renpyper_moods:
                 super(RenpyperMood, self).__init__(val, top, bottom, mode, incdec, topName, bottomName)
                 self.timeHook_ = timeHook
                 self.helper_ = helper
+                if mode == RENPYPER_LINEAR_MOOD:
+                    self.incdec_ = incdecLinear
                 
             def __deepcopy__(self, memo):
                 newMood = type(self)()

@@ -1,6 +1,6 @@
 label unit_test_flags:
     
-    $ testFlag = Renpyper_Flag()
+    $ testFlag = RenpyperFlag()
     if testFlag.get() is not None:
         "Making a flag object didn't work."
     $ testFlag.set(True)
@@ -11,12 +11,12 @@ label unit_test_flags:
         "Setting a flag to false didn't work."
     $ del testFlag
     
-    $ testFlag = Renpyper_Flag(name = 'Is a vampire')
+    $ testFlag = RenpyperFlag(name = 'Is a vampire')
     if testFlag.getName() != 'Is a vampire':
         "Creating a flag object with a name didn't work."
     $ del testFlag
     
-    $ testFlag = Renpyper_Flag(name = 'Vampire')
+    $ testFlag = RenpyperFlag(name = 'Vampire')
     $ testFlag.set(True)
     $ copiedFlag = copy.deepcopy(testFlag)
     $ testFlag.set(False)

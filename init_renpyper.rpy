@@ -2,6 +2,7 @@ label renpyper_init:
     python:
         import math
         import copy
+        from random import randint
     
     call renpyper_genericPersmod
 
@@ -20,5 +21,7 @@ label renpyper_init:
     call renpyper_roleSystems
     
     call renpyper_event
+    
+    call renpyper_goals
     
     return
