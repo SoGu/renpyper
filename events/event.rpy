@@ -1,4 +1,7 @@
 label renpyper_event:
+    
+    $ global_events = {}
+    
     python:
         class RenpyperEvent(object):
             name_ = ''

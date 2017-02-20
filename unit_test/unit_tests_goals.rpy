@@ -48,5 +48,65 @@ label unit_test_goals:
     $ global_goals.clear()
     $ global_moods.clear()
     
+    
+    python:
+        global_events['Play Piano'] = RenpyperEvent(name = 'Play Piano')
+        global_events['Read a Book'] = RenpyperEvent(name = 'Read a Book about playing Piano')
+        global_events['Earn Money'] = RenpyperEvent(name = 'Earn Money')
+        global_events['Buy new Piano'] = RenpyperEvent(name = 'Buy new Piano')
+        
+        global_flags['Owns Piano'] = RenpyperFlag(name = 'Owns Piano')
+        
+        global_abilities['Piano Skill'] = RenpyperAbility(top = 1000, bottom = 0, val = 0)
+        
+        def boughtPianoGoalReached(character):
+            if character.getFlag('Owns Piano').get() == True:
+                return True
+            else:
+                return False
+                
+        global_goals['Buy new Piano'] = RenpyperGoal(reached = boughtPianoGoalReached)
+        global_goals['Buy new Piano'].addEvent(global_events['Earn Money'], 100)
+        global_goals['Buy new Piano'].addEvent(global_events['Buy new Piano'], 10)
+        
+        def learnedToPlayPianoGoalReached(character):
+            if character.getAbility('Piano Skill').get() > 800:
+                return True
+            else:
+                return False
+        
+        global_goals['Learn Piano'] = RenpyperGoal(reached = learnedToPlayPianoGoalReached, name = 'Learn Piano')
+        global_goals['Learn Piano'].addEvent(global_events['Play Piano'], 50)
+        global_goals['Learn Piano'].addEvent(global_events['Read a Book'], 10)
+        global_goals['Learn Piano'].addGoal(global_goals['Buy new Piano'], 20)
+        
+        testChar = RenpyperCharacter(name = 'Pi')
+        
+    if testChar.goals_['Learn Piano'].name_ != 'Learn Piano':
+        "Setting a goal to a character didn't work correctly."
+    $ goalCtr = len(testChar.goals_)
+    if goalCtr != 2:
+        "Setting goals to a character didn't work correctly."
+        
+    $ nextEvent = testChar.goals_['Learn Piano'].pursue(strength = 0.9)
+    
+    $ count = 100
+    while count > 0:
+        $ nextEvent = testChar.goals_['Learn Piano'].pursue(strength = 0.9)
+        if nextEvent == None:
+            "I got a None object as the next Event. Baaaaaaaad!"
+        $ count -= 1
+        
+    python:
+        global_events.clear()
+        global_flags.clear()
+        global_abilities.clear()
+        global_goals.clear()
+        del learnedToPlayPianoGoalReached
+        del boughtPianoGoalReached
+        del testChar
+        del nextEvent
+        del goalCtr
+    
     return
     

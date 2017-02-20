@@ -41,7 +41,7 @@ label unit_test_characters:
     $ global_traits.clear()
     
     
-    $ global_flags['Vampire'] = Renpyper_Flag()
+    $ global_flags['Vampire'] = RenpyperFlag()
     
     $ testChar1 = RenpyperCharacter()
     $ testChar2 = RenpyperCharacter()

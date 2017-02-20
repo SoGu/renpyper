@@ -31,39 +31,43 @@ label renpyper_goals:
             
             ## returns an event object - this is the event the character wants to do now
             def pursue(self, strength = 0.5):
-                # 1. calculate goals weight
                 sumOfGoals = 0
                 for i in self.goals_:
                     sumOfGoals += i[1]
-                # 2. calculate events weight
                 sumOfEvents = 0
                 for i in self.events_:
                     sumOfEvents += i[1]
-                # decide if to take an event or a goal
+                
                 sum = sumOfEvents + sumOfGoals
                 randNr = randint(0, sum)
                 eventStrength = sumOfEvents/sum*strength + randNr*(1-strength)
                 goalStrength = sumOfGoals/sum*strength + (sum-randNr)*(1-strength)
-                # if event:
-                if eventStrength >= goalStrength:
-                #       calculate the event to return
-                    chooser = randint(0, sumOfEvents)
-                    for i in self.events_:
-                        if chooser < i[1]:
-                            return i[0]
-                        else:
-                            chooser -= i[1]
-                # else:
+                
+                if (eventStrength >= goalStrength or
+                    sumOfGoals == 0): # this one actually cost me a few hours of debugging... -.-
+                    tmpEventList = []
+                    for h in self.events_:
+                        tmpEventList.append([h[0], strength*h[1] + (1-strength)*randint(0, math.floor(sumOfEvents/len(self.events_)))])
+                    max = 0
+                    newEvent = None
+                    for i in tmpEventList:
+                        if i[1] > max:
+                            max = i[1]
+                            newEvent = i[0]
+                    del tmpEventList
+                    return newEvent
                 else:
-                #       calculate the goal to persue
-                    chooser = randint(0, sumOfGoals)
-                    for i in self.goals_:
-                        if chooser < i[1]:
-                            return i[0].pursue(strength)
-                        else:
-                            chooser -= 1
-                #       call persue function of that goal
-                pass
+                    tmpGoalList = []
+                    for j in self.goals_:
+                        tmpGoalList.append([j[0], strength*j[1] + (1-strength)*randint(0, math.floor(sumOfGoals/len(self.goals_)))])
+                    max = 0
+                    newGoal = None
+                    for k in tmpGoalList:
+                        if k[1] >= max:
+                            max = k[1]
+                            newGoal = k[0]
+                    del tmpGoalList
+                    return newGoal.pursue(strength)
                 
             def addGoal(self, goal, effectiveness):
                 self.goals_.append([goal, effectiveness])

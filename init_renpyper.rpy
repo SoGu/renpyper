@@ -2,6 +2,7 @@ label renpyper_init:
     python:
         import math
         import copy
+        from random import randint
     
     call renpyper_genericPersmod
 

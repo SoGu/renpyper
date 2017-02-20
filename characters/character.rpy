@@ -87,6 +87,9 @@ label renpyper_characters:
                 
             def goal(self, key):
                 return self.getGoal(key)
+                
+            def addGoal(self, goal, name):
+                self.goals_[name] = goal
             
     return
     

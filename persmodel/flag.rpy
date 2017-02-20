@@ -3,7 +3,7 @@ label renpyper_flags:
     $ global_flags = {}
     
     python:
-        class Renpyper_Flag(PersModel):
+        class RenpyperFlag(PersModel):
             
             val_ = None
             
