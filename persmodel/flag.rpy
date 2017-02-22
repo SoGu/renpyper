@@ -9,8 +9,9 @@ label renpyper_flags:
             
             name_ = ''
             
-            def __init__(self, name = ''):
+            def __init__(self, name = '', val = None):
                 self.name_ = name
+                self.val_ = val
             
             def getValue(self):
                 return self.val_
