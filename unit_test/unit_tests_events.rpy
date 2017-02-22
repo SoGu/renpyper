@@ -1,7 +1,7 @@
 label unit_test_events:
     
-    $ global_traits['confidence'] = Trait()
-    $ global_traits['happyness'] = Trait()
+    $ global_traits['confidence'] = RenpyperTrait()
+    $ global_traits['happyness'] = RenpyperTrait()
     $ global_moods['tiredness'] = RenpyperMood(val = 500)
     $ char1 = RenpyperCharacter(name = 'Romeo')
     $ char2 = RenpyperCharacter(name = 'Juliet')
@@ -70,9 +70,9 @@ label unit_test_events:
     $ del testEvent
     
     python:
-        global_traits['determination'] = Trait(top = 100, bottom = 0, val = 50, topName = 'determined', mode = RENPYPER_LINEAR)
-        global_traits['talent'] = Trait(top = 100, bottom = 0, val = 50, topName = 'talented', mode = RENPYPER_LINEAR)
-        global_traits['experience'] = Trait(top = 100, bottom = 0, val = 50, topName = 'experienced', mode = RENPYPER_LINEAR)
+        global_traits['determination'] = RenpyperTrait(top = 100, bottom = 0, val = 50, topName = 'determined', mode = RENPYPER_LINEAR)
+        global_traits['talent'] = RenpyperTrait(top = 100, bottom = 0, val = 50, topName = 'talented', mode = RENPYPER_LINEAR)
+        global_traits['experience'] = RenpyperTrait(top = 100, bottom = 0, val = 50, topName = 'experienced', mode = RENPYPER_LINEAR)
         
         def incFitness(current, time, effect):
             return current + time * effect

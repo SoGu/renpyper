@@ -3,7 +3,7 @@ label renpyper_moods:
     $ global_moods = {}
     
     python:
-        class RenpyperMood(Trait):
+        class RenpyperMood(RenpyperTrait):
             helper_ = 0
             
             def timeHook_(): pass

@@ -3,7 +3,7 @@ label renpyper_abilities:
     $ global_abilities = {}
     
     python:
-        class RenpyperAbility(Trait): 
+        class RenpyperAbility(RenpyperTrait): 
             # How fast a character can achieve an ability.
             talent_ = 0.0
             

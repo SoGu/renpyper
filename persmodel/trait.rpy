@@ -3,7 +3,7 @@ label renpyper_traits:
     call renpyper_trait_utils
     
     python:
-        class Trait(PersModel):
+        class RenpyperTrait(PersModel):
             """A trait object is a personality trait that describes a personality aspect of a character.
             A trait provides the most basic personality description entity, although it is very mighty.
             Most games can be written with only personality traits.
