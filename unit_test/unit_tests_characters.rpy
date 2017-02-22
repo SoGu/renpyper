@@ -20,7 +20,7 @@ label unit_test_characters:
         "Deleting a character didn't remove it from the global character list."
     
     
-    $ global_traits['trust'] = Trait()
+    $ global_traits['trust'] = RenpyperTrait()
     
     $ testChar = RenpyperCharacter(name = 'John', col = "#000000")
     if testChar.rc_.name != 'John':
@@ -29,11 +29,11 @@ label unit_test_characters:
     
     $ testChar1 = RenpyperCharacter()
     $ testChar2 = RenpyperCharacter()
-    $ testChar1.getTrait('trust').setValue(333)
-    if testChar1.getTrait('trust').get() != 333:
+    $ testChar1.trait('trust').setValue(333)
+    if testChar1.trait('trust').get() != 333:
         "Setting a trait of a character to a certain value didn't work."
-    $ testChar2.getTrait('trust').setValue(555)
-    if testChar1.getTrait('trust').get() != 333:
+    $ testChar2.trait('trust').setValue(555)
+    if testChar1.trait('trust').get() != 333:
         "Deep copying the global traits dictionary of traits on character generation didn't work."
     $ del testChar1
     $ del testChar2
@@ -45,11 +45,11 @@ label unit_test_characters:
     
     $ testChar1 = RenpyperCharacter()
     $ testChar2 = RenpyperCharacter()
-    $ testChar1.getFlag('Vampire').setValue(True)
-    if testChar1.getFlag('Vampire').get() is not True:
+    $ testChar1.flag('Vampire').setValue(True)
+    if testChar1.flag('Vampire').get() is not True:
         "Setting a flag of a character to a certain value didn't work."
-    $ testChar2.getFlag('Vampire').setValue(False)
-    if testChar1.getFlag('Vampire').get() is not True:
+    $ testChar2.flag('Vampire').setValue(False)
+    if testChar1.flag('Vampire').get() is not True:
         "Deep copying the global flags dictionary of traits on character generation didn't work."
     $ del testChar1
     $ del testChar2
@@ -60,8 +60,8 @@ label unit_test_characters:
     
     $ testChar1 = RenpyperCharacter()
     $ testChar2 = RenpyperCharacter()
-    $ testChar2.getProp('eye color').set('white')
-    if testChar1.getProp('eye color').get() == 'white':
+    $ testChar2.prop('eye color').set('white')
+    if testChar1.prop('eye color').get() == 'white':
         "Deep copying a property object didn't work correctly."
     $ del testChar1
     $ del testChar2
@@ -70,20 +70,20 @@ label unit_test_characters:
     $ global_abilities['dancing'] = RenpyperAbility(topName = 'Dance', base = 1.0)
     
     $ testChar1 = RenpyperCharacter()
-    $ testChar1.getAb('dancing').set(15)
-    if testChar1.getAb('dancing').get() != 15:
+    $ testChar1.ab('dancing').set(15)
+    if testChar1.ab('dancing').get() != 15:
         "Setting a value in an ability didn't work correctly."
-    $ testChar1.getAb('dancing').setTalent(2.0)
-    if testChar1.getAb('dancing').getTalent() != 2.0:
+    $ testChar1.ab('dancing').setTalent(2.0)
+    if testChar1.ab('dancing').getTalent() != 2.0:
         "Setting a talent value in an ability didn't work correctly."
-    $ testChar1.getAb('dancing').learn(10)
-    if testChar1.getAb('dancing').get() != 45:
+    $ testChar1.ab('dancing').learn(10)
+    if testChar1.ab('dancing').get() != 45:
         "Learning an ability didn't work correctly."
     $ del testChar1
     $ global_abilities.clear()
     
     
-    $ global_traits['size'] = Trait(bottom = 0, top = 250)
+    $ global_traits['size'] = RenpyperTrait(bottom = 0, top = 250)
     
     python:
         def testInflFunc(key):
@@ -92,11 +92,11 @@ label unit_test_characters:
     $ global_abilities['dancing'] = RenpyperAbility(topName = 'Dance', base = 1.0, talent = 0.0, influence = testInflFunc)
     
     $ testChar = RenpyperCharacter(name = 'ABC')
-    $ testChar.getTrait('size').set(180)
-    $ testChar.getAb('dancing').setKey('ABC')
+    $ testChar.trait('size').set(180)
+    $ testChar.ab('dancing').setKey('ABC')
     
-    $ testChar.getAb('dancing').set(10)
-    if testChar.getAb('dancing').get() == 12:
+    $ testChar.ab('dancing').set(10)
+    if testChar.getAb('dancing') == 12:
         "Providing and using an influence function for abilities didn't work correctly."
     
     $ global_traits.clear()

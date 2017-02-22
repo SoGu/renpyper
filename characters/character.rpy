@@ -47,13 +47,16 @@ label renpyper_characters:
                 return self.name_
                 
             def getTrait(self, key):
-                return self.traits_[key]
+                return self.traits_[key].get()
                 
             def trait(self, key):
-                return self.getTrait(key)
+                return self.traits_[key]
+                
+            def flag(self, key):
+                return self.flags_[key]
                 
             def getFlag(self, key):
-                return self.flags_[key]
+                return self.flags_[key].get()
                 
             def isPlayer(self):
                 return self.player_
@@ -65,28 +68,37 @@ label renpyper_characters:
                 self.resourcePath_ = path
                 
             def getProperty(self, key):
-                return self.props_[key]
+                return self.props_[key].get()
                 
             def getProp(self, key):
                 return self.getProperty(key)
                 
+            def property(self, key):
+                return self.props_[key]
+                
+            def prop(self, key):
+                return self.property(key)
+                
             def getAbility(self, key):
-                return self.abilities_[key]
+                return self.abilities_[key].get()
                 
             def getAb(self, key):
                 return self.getAbility(key)
                 
+            def ability(self, key):
+                return self.abilities_[key]
+                
+            def ab(self, key):
+                return self.ability(key)
+                
             def getMood(self, key):
-                return self.moods_[key]
+                return self.moods_[key].get()
                 
             def mood(self, key):
-                return self.getMood(key)
-                
-            def getGoal(self, key):
-                return self.goals_[key]
+                return self.moods_[key]
                 
             def goal(self, key):
-                return self.getGoal(key)
+                return self.goals_[key]
                 
             def addGoal(self, goal, name):
                 self.goals_[name] = goal
