@@ -20,6 +20,7 @@ label renpyper_characters:
             abilities_ = {}
             moods_ = {}
             goals_ = {}
+            relationships_ = {}
             
             # This variable indicates, if this character is controlled by the user or not.
             # Is needed so the "AI" knows when to pick an answer and when to ask the user for one.
@@ -37,6 +38,7 @@ label renpyper_characters:
                 self.moods_ = copy.deepcopy(global_moods)
                 self.goals_ = copy.deepcopy(global_goals)
                 self.name_ = name
+                self.relationships_ = {}
                 if name != '':
                     global_characters[name] = self
                     
@@ -90,6 +92,9 @@ label renpyper_characters:
                 
             def addGoal(self, goal, name):
                 self.goals_[name] = goal
+                
+            def relationship(self, name):
+                self.relationships_[name]
             
     return
     

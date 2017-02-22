@@ -27,6 +27,8 @@ label start:
     
     call unit_test_goals
     
+    call unit_test_relationship
+    
     "All unit tests completed."
     
     return

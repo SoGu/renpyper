@@ -18,6 +18,8 @@ label renpyper_init:
     
     call renpyper_characters
     
+    call renpyper_relationship
+    
     call renpyper_roleSystems
     
     call renpyper_event
