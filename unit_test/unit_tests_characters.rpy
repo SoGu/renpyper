@@ -87,7 +87,7 @@ label unit_test_characters:
     
     python:
         def testInflFunc(key):
-            return (global_characters[key].getTrait('size').get() - 170) / 5
+            return (global_characters[key].getTrait('size') - 170) / 5
     
     $ global_abilities['dancing'] = RenpyperAbility(topName = 'Dance', base = 1.0, talent = 0.0, influence = testInflFunc)
     
@@ -95,9 +95,25 @@ label unit_test_characters:
     $ testChar.trait('size').set(180)
     $ testChar.ab('dancing').setKey('ABC')
     
+    if testChar.ab('dancing').superCharacterKey_ != 'ABC':
+        "Setting the super character key in an ability didn't work."
+    
     $ testChar.ab('dancing').set(10)
-    if testChar.getAb('dancing') == 12:
+    
+    $ val = testInflFunc('ABC')
+    if val != 2:
+        "Something went wrong with an influence function."
+        "The value was [val]."
+    $ del val
+    
+    if testChar.ab('dancing').influence_ is emptyAbilityInfluenceFunction:
+        "Setting the test influence function to a custom function in abilities didn't work."
+    
+    if testChar.getAb('dancing') != 12:
         "Providing and using an influence function for abilities didn't work correctly."
+        $ val = testChar.getAb('dancing')
+        "Value was: [val]"
+        $ del val
     
     $ global_traits.clear()
     $ del testChar

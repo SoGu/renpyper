@@ -16,11 +16,14 @@ label renpyper_abilities:
             
             def __init__(self, base = 1, talent = 0, val = 0, top = 1000, bottom = 0,
                 mode = RENPYPER_LINEAR_ABILITY, incdec = incdecLinear, topName = "", bottomName = "",
-                influence = emptyAbilityInfluenceFunction):
+                influence = None):
                 super(RenpyperAbility, self).__init__(val, top, bottom, mode, incdec, topName, bottomName)
                 self.talent_ = talent
                 self.base_ = base
-                self.influence_ = influence
+                if influence == None:
+                    self.influence_ = emptyAbilityInfluenceFunction
+                else:
+                    self.influence_ = influence
                 if self.mode_ == RENPYPER_LINEAR_ABILITY:
                     self.incdec_ = incdecLinearAbility
                 
@@ -28,10 +31,10 @@ label renpyper_abilities:
                 return self.value_
                 
             def get(self):
-                return self.getValue() + self.influence_(self.superCharacterKey_)
+                return self.getRawValue() + self.influence_(self.superCharacterKey_)
                 
             def getRawValue(self):
-                return self.getValue()
+                return self.value_
                 
             def getTalent(self):
                 return self.talent_
