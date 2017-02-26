@@ -55,6 +55,7 @@ label renpyper_abilities:
                 newAb.nameBottom_ = copy.deepcopy(self.nameBottom_, memo)
                 newAb.talent_ = copy.deepcopy(self.talent_, memo)
                 newAb.base_ = copy.deepcopy(self.base_, memo)
+                newAb.influence_ = self.influence_
                 return newAb
                 
             def learn(self, var):

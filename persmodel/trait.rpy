@@ -52,6 +52,7 @@ label renpyper_traits:
                 newTrait.mode_ = copy.deepcopy(self.mode_, memo)
                 newTrait.nameTop_ = copy.deepcopy(self.nameTop_, memo)
                 newTrait.nameBottom_ = copy.deepcopy(self.nameBottom_, memo)
+                newTrait.incdec_ = self.incdec_
                 return newTrait
             
             def getValue(self):
