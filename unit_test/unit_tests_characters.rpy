@@ -8,13 +8,13 @@ label unit_test_characters:
     if global_characters['Larry'] is not testChar:
         "A character didn't add itself to the global character list correctly."
         
-    $ testChar2 = RenpyperCharacter(name = 'Test')
+    $ RenpyperCharacter(name = 'Test')
     
     if len(global_characters) != 2:
         "Deleting a character didn't remove it from the global character list."
         
     $ testChar.__del__()
-    $ testChar2.__del__()
+    $ global_characters['Test'].__del__()
     
     if len(global_characters) != 0:
         "Deleting a character didn't remove it from the global character list."
