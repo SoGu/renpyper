@@ -81,7 +81,7 @@ label renpyper_traits:
                 self.setValue(newValue)
                               
             def inc(self, var):
-                self.value_ = self.incdec_(var, self.value_)
+                self.value_ = self.incdec_(var, self.value_, self.top_, self.bottom_)
                 if (self.value_ > self.top_):
                     self.value_ = self.top_
                 if (self.value_ < self.bottom_):
