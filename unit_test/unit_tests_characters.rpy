@@ -35,14 +35,6 @@ label unit_test_characters:
     $ testChar2.trait('trust').setValue(555)
     if testChar1.trait('trust').get() != 333:
         "Deep copying the global traits dictionary of traits on character generation didn't work."
-        
-    $ testChar2.setTrait('trust', 123)
-    if testChar2.getTrait('trust') != 123:
-        "The setTrait shortcut in the character object didn't work."
-    $ testChar2.incTrait('trust', 123)
-    if testChar2.getTrait('trust') != 246:
-        "The incTrait shortcut in the character object didn't work."
-        
     $ del testChar1
     $ del testChar2
     
@@ -59,11 +51,6 @@ label unit_test_characters:
     $ testChar2.flag('Vampire').setValue(False)
     if testChar1.flag('Vampire').get() is not True:
         "Deep copying the global flags dictionary of traits on character generation didn't work."
-        
-    $ testChar1.setFlag('Vampire')
-    if testChar1.getFlag('Vampire') != True:
-        "The setFlag shortcut in the character object didn't work."
-        
     $ del testChar1
     $ del testChar2
     
@@ -76,11 +63,6 @@ label unit_test_characters:
     $ testChar2.prop('eye color').set('white')
     if testChar1.prop('eye color').get() == 'white':
         "Deep copying a property object didn't work correctly."
-    
-    $ testChar2.setProp('eye color', 'green')
-    if testChar2.getProp('eye color') != 'green':
-        "The setProperty shortcut in the character object didn't work."
-    
     $ del testChar1
     $ del testChar2
     
@@ -94,25 +76,9 @@ label unit_test_characters:
     $ testChar1.ab('dancing').setTalent(2.0)
     if testChar1.ab('dancing').getTalent() != 2.0:
         "Setting a talent value in an ability didn't work correctly."
-    if testChar1.getTalent('dancing') != 2.0:
-        "The getTalent shortcut for character objects didn't work."
     $ testChar1.ab('dancing').learn(10)
     if testChar1.ab('dancing').get() != 45:
         "Learning an ability didn't work correctly."
-        
-    $ testChar1.setAb('dancing', 8)
-    if testChar1.getAb('dancing') != 8:
-        "The setAbility shortcut for character objects didn't work."
-    
-    $ testChar1.setTalent('dancing', 3)
-
-    if testChar1.getTalent('dancing') != 3:
-        "The setTalent shortcut in the character class didn't work."
-        
-    $ testChar1.learn('dancing', 10)
-    if testChar1.getAb('dancing') != 48:
-        "The learn shortcut it the character object didn't work."
-
     $ del testChar1
     $ global_abilities.clear()
     

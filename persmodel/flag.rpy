@@ -22,11 +22,8 @@ label renpyper_flags:
             def get(self):
                 return self.getValue()
                 
-            def set(self, newValue = True):
+            def set(self, newValue):
                 self.setValue(newValue)
-                
-            def unset(self):
-                self.setValue(False)
                 
             def getName(self):
                 return self.name_
