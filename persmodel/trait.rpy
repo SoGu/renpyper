@@ -3,7 +3,7 @@ label renpyper_traits:
     call renpyper_trait_utils
     
     python:
-        class Trait(PersModel):
+        class RenpyperTrait(PersModel):
             """A trait object is a personality trait that describes a personality aspect of a character.
             A trait provides the most basic personality description entity, although it is very mighty.
             Most games can be written with only personality traits.
@@ -52,6 +52,7 @@ label renpyper_traits:
                 newTrait.mode_ = copy.deepcopy(self.mode_, memo)
                 newTrait.nameTop_ = copy.deepcopy(self.nameTop_, memo)
                 newTrait.nameBottom_ = copy.deepcopy(self.nameBottom_, memo)
+                newTrait.incdec_ = self.incdec_
                 return newTrait
             
             def getValue(self):
@@ -80,7 +81,7 @@ label renpyper_traits:
                 self.setValue(newValue)
                               
             def inc(self, var):
-                self.value_ = self.incdec_(var, self.value_)
+                self.value_ = self.incdec_(var, self.value_, self.top_, self.bottom_)
                 if (self.value_ > self.top_):
                     self.value_ = self.top_
                 if (self.value_ < self.bottom_):

@@ -36,5 +36,24 @@ label unit_test_abilities:
         "Setting the value in an ability object didn't work."
     $ del testAb
     
+    python:
+        def testInflFunction(key):
+            return 3
+    
+        testAb = RenpyperAbility(influence = testInflFunction)
+        
+    if testAb.influence_ is not testInflFunction:
+        "Setting the influence function to a custom function in an ability didn't work."
+    
+    $ testAb.set(55)
+    $ result = testAb.get()
+    
+    if result != 58:
+        "Influence function didn't work correctly and wasn't used correctly in the get() method."
+    
+    $ del testAb
+    $ del result
+    $ del testInflFunction
+    
     return
     
