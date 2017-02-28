@@ -49,6 +49,12 @@ label renpyper_characters:
             def getTrait(self, key):
                 return self.traits_[key].get()
                 
+            def setTrait(self, key, newValue):
+                self.traits_[key].set(newValue)
+                
+            def incTrait(self, key, inc):
+                self.traits_[key].inc(inc)
+                
             def trait(self, key):
                 return self.traits_[key]
                 
@@ -57,6 +63,12 @@ label renpyper_characters:
                 
             def getFlag(self, key):
                 return self.flags_[key].get()
+                
+            def setFlag(self, key):
+                self.flags_[key].setValue(True)
+                
+            def unsetFlag(self, key):
+                self.flags_[key].setValue(False)
                 
             def isPlayer(self):
                 return self.player_
@@ -73,6 +85,12 @@ label renpyper_characters:
             def getProp(self, key):
                 return self.getProperty(key)
                 
+            def setProperty(self, key, string):
+                self.props_[key].setValue(string)
+                
+            def setProp(self, key, string):
+                self.setProperty(key, string)
+                
             def property(self, key):
                 return self.props_[key]
                 
@@ -85,6 +103,21 @@ label renpyper_characters:
             def getAb(self, key):
                 return self.getAbility(key)
                 
+            def setAbility(self, key, newValue):
+                self.abilities_[key].setValue(newValue)
+                
+            def setAb(self, key, newValue):
+                self.setAbility(key, newValue)
+                
+            def setTalent(self, key, newTalent):
+                self.abilities_[key].setTalent(newTalent)
+                
+            def getTalent(self, key):
+                return self.abilities_[key].getTalent()
+                
+            def learn(self, key, var):
+                self.abilities_[key].learn(var)
+                
             def ability(self, key):
                 return self.abilities_[key]
                 
@@ -93,6 +126,12 @@ label renpyper_characters:
                 
             def getMood(self, key):
                 return self.moods_[key].get()
+                
+            def setMood(self, key, newValue):
+                self.moods_[key].set(newValue)
+                
+            def incMood(self, key, inc):
+                self.moods_[key].inc(inc)
                 
             def mood(self, key):
                 return self.moods_[key]

@@ -32,7 +32,7 @@ label renpyper_roleSystems:
                             i.fire()
                             break
                 
-            ## Finds one (undefined) character in the role with the given name.
+            ## Finds one (undefined) role that the given character has.
             ## Should only be used if the author is sure there is only one such role.
             def getRole(self, name):
                 for i in self.role_list_:
@@ -52,14 +52,14 @@ label renpyper_roleSystems:
                 
             ## Finds one (undefined) CHARACTER with the given name and returns the ROLE it is in.
             ## Should only be used if the author is sure the character has only that one role.
-            def find(self, name):
+            def find(self, role):
                 for i in self.role_list_:
-                    if i.name_ == name:
+                    if i.name_ == role:
                         if i.getChar() is not None:
                             return i.getChar()
                 return None
                 
-            ## Finds all CHARACTERS with the given role and returns their name as part of a list.
+            ## Finds all CHARACTERS with the given role and returns them as part of a list.
             def findAll(self, role):
                 for i in self.role_list_:
                     if i.name_ == role:
