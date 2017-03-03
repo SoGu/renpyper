@@ -59,7 +59,7 @@ label renpyper_abilities:
                 return newAb
                 
             def learn(self, var):
-                self.value_ = self.incdec_(self.value_, var, self.talent_, self.base_)
+                self.value_ = self.incdec_(self.value_, var, self.talent_ + self.base_)
                 if self.value_ > self.top_:
                     self.value_ = self.top_
                 if self.value_ < self.bottom_:

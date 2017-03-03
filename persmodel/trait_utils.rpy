@@ -6,8 +6,8 @@ label renpyper_trait_utils:
             """ This function increments or decrements the trait linearly."""
             return val + var
             
-        def incdecLinearAbility(current, toLearn, talent, base):
-            return math.floor(current + toLearn * (talent + base))
+        def incdecLinearAbility(current, toLearn, learnRate):
+            return math.floor(current + toLearn * learnRate)
             
         def emptyAbilityInfluenceFunction(key):
             return 0
