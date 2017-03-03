@@ -127,7 +127,6 @@ label unit_test_characters:
     
     $ testChar = RenpyperCharacter(name = 'ABC')
     $ testChar.trait('size').set(180)
-    $ testChar.ab('dancing').setKey('ABC')
     
     if testChar.ab('dancing').superCharacterKey_ != 'ABC':
         "Setting the super character key in an ability didn't work."

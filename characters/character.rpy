@@ -34,6 +34,8 @@ label renpyper_characters:
                 self.flags_ = copy.deepcopy(global_flags)
                 self.props_ = copy.deepcopy(global_properties)
                 self.abilities_ = copy.deepcopy(global_abilities)
+                for ab in self.abilities_:
+                    self.abilities_[ab].superCharacterKey_ = name
                 self.moods_ = copy.deepcopy(global_moods)
                 self.goals_ = copy.deepcopy(global_goals)
                 self.name_ = name
