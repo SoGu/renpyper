@@ -153,5 +153,27 @@ label unit_test_characters:
     $ global_abilities.clear()
     $ del testInflFunc
     
+    $ global_traits['trait1'] = RenpyperTrait()
+    $ global_traits['trait2'] = RenpyperTrait()
+    $ global_properties['eye color'] = RenpyperProperty()
+    $ global_properties['hair'] = RenpyperProperty()
+    $ testChar = RenpyperCharacter(name = 'RandomCharacter')
+    $ allowedProperties = {}
+    $ allowedProperties['eye color'] = ['black', 'blue', 'brown', 'green']
+    $ allowedProperties['hair'] = ['long', 'short', 'very short', 'very long']
+    $ testChar.randomize(allowedProperties)
+    
+    "Okay, let's look into that random character."
+    $ trait1 = testChar.getTrait('trait1')
+    $ trait2 = testChar.getTrait('trait2')
+    $ prop1 = testChar.getProp('eye color')
+    $ prop2 = testChar.getProp('hair')
+    "[trait1], [trait2], [prop1], [prop2]"
+    
+    $ del trait1
+    $ del trait2
+    $ del testChar
+    $ del allowedProperties
+    
     return
     

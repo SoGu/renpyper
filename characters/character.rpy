@@ -143,5 +143,28 @@ label renpyper_characters:
                 
             def addGoal(self, goal, name):
                 self.goals_[name] = goal
+                
+            def randomize(self, allowedProperties):
+                for trait in self.traits_:
+                    self.traits_[trait].setValue(renpy.random.randint(self.traits_[trait].bottom_, self.traits_[trait].top_))
+                    
+                for flag in self.flags_:
+                    i = renpy.random.randint(0, 1)
+                    if i == 1:
+                        self.flags_[flag].set()
+                    else:
+                        self.flags_[flag].unset()
+                        
+                for prop in self.props_:
+                    self.props_[prop].set(renpy.random.choice(allowedProperties[prop]))
+                    
+                for ab in self.abilities_:
+                    self.abilities_[ab].setTalent(renpy.random.randint(0, 30) / 10) # not a good solution!
+                    self.abilities_[ab].setValue(renpy.random.randint(self.abilities_[ab].bottom_, self.abilities_[ab].top_))
+                    
+                for mood in self.moods_:
+                    self.moods_[mood].setValue(renpy.random.randint(self.moods_[mood].bottom_, self.moods_[mood].top_))
+                    
+                # random goals not implemented yet
             
     return
