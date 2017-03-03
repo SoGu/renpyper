@@ -64,9 +64,6 @@ label renpyper_abilities:
                     self.value_ = self.top_
                 if self.value_ < self.bottom_:
                     self.value_ = self.bottom_
-                    
-            def setKey(self, key):
-                self.superCharacterKey_ = key
                 
     return
     
